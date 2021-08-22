@@ -22,14 +22,15 @@ $(document).ready(function() {
       });
     
 
-     $('#form_contato input').change(function(){        
+     $('.contato input').change(function(){        
         var id_element = $(this).attr('id');
+        alert(id_element);
         if($(this).val()){      
             ga('send', 'event', 'contato', id_element, 'preencheu'); 
         }
     });
 
-    $('#form_contato').submit(function(){
+    $('.contato').submit(function(){
         alert("Formulário foi enviado!");            
         ga('send', 'event', 'contato', 'enviado', 'enviado'); 
         
