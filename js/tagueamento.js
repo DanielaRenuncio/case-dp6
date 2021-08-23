@@ -7,6 +7,8 @@
 
 $(document).ready(function() {
 
+     /* elementos da página index.html */
+
     $('.menu-lista-contato').on('click', function() {             
         ga('send', 'event', 'menu', 'entre_em_contato', 'link_externo');       
      });
@@ -15,25 +17,28 @@ $(document).ready(function() {
         ga('send', 'event', 'menu', 'download_pdf', 'download_pdf');       
      });
      
+      /* elementos da página analise.html */      
+
      $('.card-montadoras').on('click', function() {
-        var card_conteudo = $(this).attr('data-name');    
-        alert(card_conteudo);   
+        let card_conteudo = $(this).attr('data-name');                  
         ga('send', 'event', 'analise', 'ver_mais', card_conteudo);   
       });
     
+      /* elementos da página sobre.html */
 
-     $('.contato input').change(function(){        
-        var id_element = $(this).attr('id');
-        alert(id_element);
-        if($(this).val()){      
-            ga('send', 'event', 'contato', id_element, 'preencheu'); 
-        }
-    });
-
-    $('.contato').submit(function(){
-        alert("Formulário foi enviado!");            
+    let inputs = document.querySelectorAll('.contato input');
+    inputs.forEach(function(element){
+    element.addEventListener('change', function () {           
+        if(element.value){               
+             ga('send', 'event', 'contato', element.id, 'preencheu'); 
+         }
+      });
+    });     
+   
+    let submit_form = document.querySelector('form.contato');
+    submit_form.addEventListener('submit',function(){
+        alert("Formulário foi enviado!");     
         ga('send', 'event', 'contato', 'enviado', 'enviado'); 
-        
-    });
-
+    });    
+ 
 });
